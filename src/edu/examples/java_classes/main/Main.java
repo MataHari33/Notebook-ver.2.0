@@ -2,12 +2,11 @@ package edu.examples.java_classes.main;
 
 import edu.examples.java_classes.controller.CommandException;
 import edu.examples.java_classes.controller.Controller;
-
 public class Main {
 
-	public static void main(String[] args) throws CommandException, RuntimeException {
+	public static void main(String[] args) throws CommandException{
 		Controller controller = new Controller();
-		
+
 		String request;
 		String response;
         request = "ADD\ntitle=Книга\nсоntent=Туманность Андромеды";

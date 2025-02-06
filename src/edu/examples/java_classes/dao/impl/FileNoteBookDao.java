@@ -20,19 +20,14 @@ public class FileNoteBookDao implements NoteBookDao{
 	public List<Object> save(Note n) throws DaoException {
 		FileWriter pen = null;
 		try {
+		pen.write("Title: " + n.getTitle() + "\n");
+		pen.write("Content: " + n.getContent() + "\n");
+		pen.write("Date: " + n.getD() + "\n");
+		pen.write("******************************\n");
 			pen = new FileWriter("notebook.txt", true);
 		} catch (IOException e) {
 			throw new DaoException(e);
-		}
-		try{
-			pen.write("Title: " + n.getTitle() + "\n");
-			pen.write("Content: " + n.getContent() + "\n");
-			pen.write("Date: " + n.getD() + "\n");
-			pen.write("******************************\n");
-
-		} catch (IOException e) {
-			throw new DaoException(e);
-		}
+ 		}
 		finally {
 			if (pen != null) {
 				try {
@@ -48,14 +43,14 @@ public class FileNoteBookDao implements NoteBookDao{
 	}
 
 	@Override
-	public List<Note> allNotes() {
+	public List<Note> allNotes() throws DaoException {
 		List<Note> notes = new ArrayList<>();
 		BufferedReader reader = null;
+		try {
 		String[] params = new String[0];
 		String title = params[1].split("=")[1];
 		String content =  params[2].split("=")[1];
 
-		try {
 			reader = new BufferedReader(new FileReader("notebook.txt"));
 			Note note = null;
 			String ln;
@@ -79,8 +74,8 @@ public class FileNoteBookDao implements NoteBookDao{
 			}
 		}
 
-		catch (Exception e) {
-			throw new RuntimeException(e);
+		catch (IOException e) {
+			throw new DaoException(e);
 		}
 		finally {
 			if (reader != null) {

@@ -10,10 +10,11 @@ public class Controller {
 	
 	public String doAction(String request) throws CommandException {
 
-        Pattern p = Pattern.compile("[a-z[^df]]+");
-        Matcher m = p.matcher(request);
+        final Pattern PATTERN = Pattern.compile("^\\w\\n + $");
+
+        Matcher m = PATTERN.matcher(request);
         boolean b = m.matches();
-        if (!b) throw new CommandException("Command " + request + "is out of format");
+        if (!b) throw new CommandException("Command " + request + " is out of format");
 
         char paramDelimeter = '\n';
         String commandName = request.substring(0, request.indexOf(paramDelimeter));
@@ -21,15 +22,10 @@ public class Controller {
 
         String response;
         try {
-            try {
                 response = executionCommand.execute(request);
-            } catch (edu.examples.java_classes.controller.impl.CommandException e) {
+            } catch (CommandException e) {
                 throw new RuntimeException(e);
             }
-        } catch (CommandException e) {
-			throw new RuntimeException(e);
-
-        }
         return response;
 	}
 

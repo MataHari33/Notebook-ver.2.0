@@ -16,10 +16,11 @@ public class UpdateNoteCommand implements Command {
 	private final NotebookLogic logic = logicProvider.getNotebookLogic();
 
 	@Override
-	public String execute(String request) throws CommandException {
+	public String execute(String request) {
 		String response = null;
 		String[] params;
 		Note newNote;
+		try {
 
 		// validate request
 		params = request.split("\n");
@@ -35,20 +36,17 @@ public class UpdateNoteCommand implements Command {
 		SimpleDateFormat format = new SimpleDateFormat();
 		format.applyPattern("yyyy-mm-dd");
 		Date date;
-		try {
 			date = format.parse(params[4].split("=")[1]);
 			newNote.setD(date);
 
 			logic.add(newNote);
 			response = "Запись обновлена успешно.";
-		} catch (ParseException e) {
+		} catch (ParseException | DaoException | NotebookLogicException e) {
 			//e.printStackTrace();
 			response = "Запись не обновлена.";
-		} catch (DaoException | NotebookLogicException e) {
-            throw new CommandException(e);
-        }
-
-        return response;
+			throw new CommandException(e);
+	    }finally {
+			return response;
+		}
 	}
-
 }

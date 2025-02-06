@@ -21,7 +21,7 @@ public class CommandProvider {
 		repository.put(CommandName.WRONG_REQUEST, new NoSuchCommand());
 	}
 
-	Command getCommand(String name){//ADD
+	Command getCommand(String name) throws CommandException {//ADD
 		CommandName commandName =null;
 		Command command = null;
 
@@ -31,8 +31,9 @@ public class CommandProvider {
 		}catch(IllegalArgumentException | NullPointerException e){
 			//write log
 			command = repository.get(CommandName.WRONG_REQUEST);
-		}
-		return command;
+			throw new CommandException(e);
+		} finally {
+		return command;}
 	}
 
 }

@@ -49,16 +49,17 @@ public class NotebookLogicImpl implements NotebookLogic {
         List<Note> myNotes = null;
         try {
             myNotes = dao.allNotes();
-        } catch (DaoException e) {
-            throw new NotebookLogicException(e);
-        }
 
         for(Note n : myNotes) {
 			if(isTextInNote(n, text)) {
 				result.add(n);
 			}
 		}
-		return result;
+        } catch (DaoException e) {
+            throw new NotebookLogicException(e);
+        }
+
+        return result;
 	}
 
 	private boolean isTextInNote(Note n, String text) {
@@ -71,29 +72,29 @@ public class NotebookLogicImpl implements NotebookLogic {
         List<Note> allNotes = null;
         try {
             allNotes = dao.allNotes();
-        } catch (DaoException e) {
-            throw new NotebookLogicException(e);
-        }
         for (Note note:allNotes) {
 			if (note.getD() != null || note.getD().equals(date)) {
 				result.add(note);
 			}
 		}
-		return result;
+        } catch (DaoException e) {
+            throw new NotebookLogicException(e);
+        }
+        return result;
 	}
 	public List<Note> find(int id) throws NotebookLogicException {
 		List<Note> result = new ArrayList<Note>();
         List<Note> allNotes = null;
         try {
             allNotes = dao.allNotes();
-        } catch (DaoException e) {
-            throw new NotebookLogicException(e);
-        }
         for (Note note:allNotes) {
 			if (note.getId()==id) {
 				result.add(note);
 			}
 		}
+        } catch (DaoException e) {
+            throw new NotebookLogicException(e);
+        }
 		return result;
 	}
 
