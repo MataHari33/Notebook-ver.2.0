@@ -6,4 +6,5 @@
  *
  */
 module java_notebook {
+    requires java.desktop;
 }

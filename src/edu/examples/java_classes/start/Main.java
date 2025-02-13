@@ -16,7 +16,7 @@ public class Main {
 		request = "ADD\ntitle=Книга\nсоntent=Туманностьdf Андромеды";
         try {
             response = controller.doAction(request);
-        } catch (CommandException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         System.out.println(response);
@@ -24,7 +24,7 @@ public class Main {
 		request = "UPDATE\nid=2\ntitle=Книга\ncontent=Туманность Андромеды\ndate=2023-08-08";
         try {
             response = controller.doAction(request);
-        } catch (CommandException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         System.out.println(response);

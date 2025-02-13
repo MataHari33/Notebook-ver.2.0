@@ -8,13 +8,13 @@ import edu.examples.java_classes.entity.Note;
 
 public interface NotebookLogic {
 
-	public void add(Note n) throws NotebookLogicException, DaoException;
+	public void add(Note n) throws NotebookLogicException;
 
-	public void add(String title, String content) throws NotebookLogicException, DaoException;
+	public void add(String title, String content) throws NotebookLogicException;
 
-	public List<Note> find(String text) throws NotebookLogicException, DaoException;
+	public Note find(String text) throws NotebookLogicException;
 
-	public List<Note> find(Date date) throws NotebookLogicException, DaoException;
+	public Note find(Date date) throws NotebookLogicException;
 
-	public List<Note> allNotes() throws NotebookLogicException, DaoException;
+	public List<Note> allNotes() throws NotebookLogicException;
 }

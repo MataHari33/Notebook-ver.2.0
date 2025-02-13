@@ -1,5 +1,5 @@
 package edu.examples.java_classes.controller;
 
 public enum CommandName {
-	ADD, UPDATE, FIND, WRONG_REQUEST
+	ADD, UPDATE, FINDBYDATE, WRONG_REQUEST, FINDBYID
 }

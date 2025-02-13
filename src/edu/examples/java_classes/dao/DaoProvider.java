@@ -9,7 +9,6 @@ public final class DaoProvider {
 	
 	private NoteBookDao noteBookDao = new FileNoteBookDao();
 	
-	
 	public NoteBookDao getNoteBookDao() {
 		return noteBookDao;
 	}
